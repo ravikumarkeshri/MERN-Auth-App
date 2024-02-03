@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
 const __dirname = path.resolve();
-app.use(express.static(path.json(__dirname, '/client/dist')))
+app.use(express.static(path.join(__dirname, '/client/dist')))
 app.use(express.json());
 app.get('*', (res, req) => {
     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));

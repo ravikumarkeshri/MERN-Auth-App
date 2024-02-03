@@ -66,6 +66,7 @@ export const google = async (req, res, next) => {
                 password: hashedPassword,
                 profilePicture: req.body.photo,
             });
+            console.log(newUser())
             await newUser.save();
             const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
             const { password: hashedPassword2, ...rest } = newUser._doc;
@@ -81,4 +82,8 @@ export const google = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+
+export const signout = (req, res) => {
+    res.clearCookie('access_token').status(200).json('Signout success!');
 };
